@@ -1,0 +1,16 @@
+descriptastorus
+flask
+gunicorn
+hyperopt
+matplotlib
+numpy
+pandas
+pandas-flavor
+rdkit
+scikit-learn
+scipy
+tensorboardX
+torch
+torchvision
+tqdm
+typed-argument-parser
