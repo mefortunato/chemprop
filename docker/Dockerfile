@@ -1,0 +1,13 @@
+FROM python:3.11-slim
+
+RUN --mount=type=cache,target=/root/.cache/pip \
+    --mount=type=bind,source=requirements/requirements.lock,target=requirements.lock \
+    python -m pip install -U pip && \
+    python -m pip install -U torch==2.2.0 && \
+    python -m pip install -U torch-scatter==2.1.2 && \
+    python -m pip install -U -r requirements.lock
+
+COPY . /src/chemprop
+
+RUN python -m pip install /src/chemprop && \
+    rm -r /src/chemprop
