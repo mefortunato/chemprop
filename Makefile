@@ -21,15 +21,10 @@ bump-major:
 bump-release:
 	@bumpversion --allow-dirty release
 
-pip-lock:
-	@docker build \
-		--build-arg PLATFORM=$(PLATFORM) \
-		-t $(REGISTRY):$(VERSION)-$(PLATFORM)-lock \
-		-f docker/Dockerfile.lock \
-		.
-	@docker run -it --rm \
-		$(REGISTRY):$(VERSION)-$(PLATFORM)-lock \
-			> requirements/requirements.$(PLATFORM).lock
+pip-compile:
+	@python -m piptools compile --output-file=requirements/requirements.lock pyproject.toml
+	@grep torch== requirements/requirements.lock > requirements/requirements.torch
+	@grep torch-scatter== requirements/requirements.lock > requirements/requirements.torch-scatter
 
 
 build:
@@ -41,7 +36,8 @@ build:
 build-base:
 	@docker build \
 		-t $(REGISTRY):$(VERSION)-base \
-		-f docker/Dockerfile.base \
+		-f docker/Dockerfile \
+		--target base \
 		.
 
 build-prod:
