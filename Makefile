@@ -55,6 +55,9 @@ pull:
 debug:
 	@docker run -it --rm \
 		-v $(shell pwd)/chemprop:/usr/local/lib/python3.11/site-packages/chemprop \
+		-v $(shell pwd)/example.py:/project/example.py \
+		-v $(shell pwd)/examples:/project/examples \
+		-v $(shell pwd)/tests:/project/tests \
 		$(VOLUMES) \
 		-w /project \
 		--entrypoint bash \
