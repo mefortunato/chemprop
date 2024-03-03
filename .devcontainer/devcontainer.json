@@ -1,0 +1,8 @@
+{
+    "build": {
+        "dockerfile": "../docker/Dockerfile",
+        "target": "base",
+        "context": "../"
+    },
+    "postCreateCommand": "bash postCreateCommand.sh"
+}
