@@ -4,5 +4,5 @@
         "target": "base",
         "context": "../"
     },
-    "postCreateCommand": "bash postCreateCommand.sh"
+    "postCreateCommand": "bash ./.devcontainer/postCreateCommand.sh"
 }
